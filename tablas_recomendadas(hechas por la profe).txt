@@ -1,0 +1,8 @@
+tabla PAY
+
+id_pay INT NOT NULL,
+amount REAL NOT NULL DEFAULT 0,
+currency VARCHAR(20) NOT NULL,
+date_pay DATE NOT NULL,
+pay_type VARCHAR(50),
+id_system_user INT NOT NULL,
