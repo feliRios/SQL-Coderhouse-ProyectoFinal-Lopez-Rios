@@ -39,14 +39,29 @@ CREATE Table libro_editorial (
 CREATE Table ficha_libro (
 	id_book INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     publisher INT NOT NULL,
-    genre INT NOT NULL,
-    author INT NOT NULL,
     sku INT,  -- Numero ISBN del libro
     book_description TEXT,
     title VARCHAR(80) NOT NULL,
     CONSTRAINT fk_genre FOREIGN KEY(genre) REFERENCES libro_genero(id_genre) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT fk_author FOREIGN KEY(author) REFERENCES libro_autor(id_author) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT fk_publisher FOREIGN KEY(publisher) REFERENCES libro_editorial(id_publisher) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- Tabla libro_autor_relacion (para expresar relacion intermedia en muchos a muchos)
+CREATE Table libro_autor_relacion (
+    id_relacion INT PRIMARY KEY AUTO_INCREMENT,
+    id_libro INT NOT NULL,
+    id_autor INT NOT NULL,
+    CONSTRAINT fk_libro FOREIGN KEY (id_libro) REFERENCES ficha_libro(id_book) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_autor FOREIGN KEY (id_autor) REFERENCES libro_autor(id_author) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- Tabla libro_genero_relacion (para expresar relacion intermedia en muchos a muchos)
+CREATE Table libro_genero_relacion (
+    id_relacion INT PRIMARY KEY AUTO_INCREMENT,
+    id_libro INT NOT NULL,
+    id_genero INT NOT NULL,
+    CONSTRAINT fk_libro FOREIGN KEY (id_libro) REFERENCES ficha_libro(id_book) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_genero FOREIGN KEY (id_genero) REFERENCES libro_genero(id_genre) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Tabla PUBLICACION
