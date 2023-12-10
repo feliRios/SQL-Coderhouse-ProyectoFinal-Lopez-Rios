@@ -34,21 +34,41 @@ VALUES (1, 'Planeta'),
 
 -- Datos para FICHA_LIBRO
 INSERT INTO ficha_libro
-VALUES (NULL, 1, 4, 4, 097895074, 'Un gran libro para comenzar un empredimiento', 'El Metodo Learn Startup'),
-       (NULL, 2, 1, 1, 097826352, 'El mejor libro para crear riquezas desde cero', 'Piense y hagase rico'),
-       (NULL, 3, 2, 2, 097823166, 'La joyita del desarrollo personal', 'Traguese ese sapo'),
-       (NULL, 4, 3, 3, 097826491, 'Sea el mejor lider de su generacion', 'Las 21 leyes irrefutables del liderazgo'),
-       (NULL, 1, 5, 5, 097816231, 'Construya habitos saludables', 'Habitos atomicos'),
-       (NULL, 2, 6, 6, 097811111, 'Aprenda a analizar los mercados como un profesional', 'Analisis tecnico de los Mercados Financieros');
+VALUES (NULL, 1, 097895074, 'Un gran libro para comenzar un empredimiento', 'El Metodo Learn Startup'),
+       (NULL, 2, 097826352, 'El mejor libro para crear riquezas desde cero', 'Piense y hagase rico'),
+       (NULL, 3, 097823166, 'La joyita del desarrollo personal', 'Traguese ese sapo'),
+       (NULL, 4, 097826491, 'Sea el mejor lider de su generacion', 'Las 21 leyes irrefutables del liderazgo'),
+       (NULL, 1, 097816231, 'Construya habitos saludables', 'Habitos atomicos'),
+       (NULL, 2, 097811111, 'Aprenda a analizar los mercados como un profesional', 'Analisis tecnico de los Mercados Financieros');
+
+-- Datos para LIBRO_GENERO_RELACION
+INSERT INTO libro_genero_relacion
+VALUES (NULL, 1, 4),
+	   (NULL, 2, 1),
+       (NULL, 3, 2),
+       (NULL, 4, 3),
+       (NULL, 5, 5),
+       (NULL, 6, 6),
+       (NULL, 1, 2);
+       
+-- Datos para LIBRO_AUTOR_RELACION
+INSERT INTO libro_autor_relacion
+VALUES (NULL, 1, 4),
+	   (NULL, 2, 1),
+       (NULL, 3, 2),
+       (NULL, 4, 3),
+       (NULL, 5, 5),
+       (NULL, 6, 6);
+
 
 -- Datos para PUBLICACION
 INSERT INTO publicacion
-VALUES (1, 6, 1, 4899.99, 10, 'Nuevo. Viene sellado. Local a la calle en la zona de Caballito', CURRENT_TIMESTAMP(), 'https://i.imgur.com/ESSkOdv.jpeg'),
-	   (2, 5, 2, 2600.00, 1, 'Esta usado en perfecto estado.', CURRENT_TIMESTAMP(),'https://i.imgur.com/ngExKHr.jpeg'),
-       (3, 4, 3, 9120.00, 3, NULL, CURRENT_TIMESTAMP(), 'https://i.imgur.com/ngExKHr.jpeg' ),
-       (4, 2, 4, 899.90, 28, 'Nos encontramos en la zona de Lomas de Zamora', CURRENT_TIMESTAMP(), 'https://i.imgur.com/1jD7zfq.jpeg'),
-       (5, 3, 5, 14500.50, 90, 'Con tu compra de 5 libros, te llevas 1 de regalo!', CURRENT_TIMESTAMP(), 'https://i.imgur.com/G9uU13g.png'),
-       (6, 1, 6, 3999.99, 10, NULL, current_timestamp(), 'https://i.imgur.com/LpS6tOd.jpeg');
+VALUES (NULL, 6, 1, 4899.99, 10, 'Nuevo. Viene sellado. Local a la calle en la zona de Caballito', CURRENT_TIMESTAMP(), 'https://i.imgur.com/ESSkOdv.jpeg'),
+	   (NULL, 5, 2, 2600.00, 1, 'Esta usado en perfecto estado.', CURRENT_TIMESTAMP(),'https://i.imgur.com/ngExKHr.jpeg'),
+       (NULL, 4, 3, 9120.00, 3, NULL, CURRENT_TIMESTAMP(), 'https://i.imgur.com/ngExKHr.jpeg' ),
+       (NULL, 2, 4, 899.90, 28, 'Nos encontramos en la zona de Lomas de Zamora', CURRENT_TIMESTAMP(), 'https://i.imgur.com/1jD7zfq.jpeg'),
+       (NULL, 3, 5, 14500.50, 90, 'Con tu compra de 5 libros, te llevas 1 de regalo!', CURRENT_TIMESTAMP(), 'https://i.imgur.com/G9uU13g.png'),
+       (NULL, 1, 6, 3999.99, 10, NULL, current_timestamp(), 'https://i.imgur.com/LpS6tOd.jpeg');
 
 -- Datos para MENSAJE
 INSERT INTO mensaje

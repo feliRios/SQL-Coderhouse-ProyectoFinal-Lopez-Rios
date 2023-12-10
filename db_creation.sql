@@ -42,7 +42,6 @@ CREATE Table ficha_libro (
     sku INT,  -- Numero ISBN del libro
     book_description TEXT,
     title VARCHAR(80) NOT NULL,
-    CONSTRAINT fk_genre FOREIGN KEY(genre) REFERENCES libro_genero(id_genre) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT fk_publisher FOREIGN KEY(publisher) REFERENCES libro_editorial(id_publisher) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -51,7 +50,7 @@ CREATE Table libro_autor_relacion (
     id_relacion INT PRIMARY KEY AUTO_INCREMENT,
     id_libro INT NOT NULL,
     id_autor INT NOT NULL,
-    CONSTRAINT fk_libro FOREIGN KEY (id_libro) REFERENCES ficha_libro(id_book) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_libro_autor FOREIGN KEY (id_libro) REFERENCES ficha_libro(id_book) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT fk_autor FOREIGN KEY (id_autor) REFERENCES libro_autor(id_author) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -60,7 +59,7 @@ CREATE Table libro_genero_relacion (
     id_relacion INT PRIMARY KEY AUTO_INCREMENT,
     id_libro INT NOT NULL,
     id_genero INT NOT NULL,
-    CONSTRAINT fk_libro FOREIGN KEY (id_libro) REFERENCES ficha_libro(id_book) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_libro_genero FOREIGN KEY (id_libro) REFERENCES ficha_libro(id_book) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT fk_genero FOREIGN KEY (id_genero) REFERENCES libro_genero(id_genre) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -137,6 +136,7 @@ CREATE TABLE AUD_PUBLICACION(
     date DATETIME NOT NULL
 );
 
+
 # Parte 2: CREACION DE LOS OBJETOS DE LA BASE DE DATOS
 
 -- VISTAS
@@ -151,11 +151,14 @@ CREATE VIEW usuario_compras AS
 
 -- Vista INFO_LIBRO (permite visualizar los libros y su informacion de publicacion)
 CREATE VIEW info_libro AS
-	SELECT f.id_book, f.title, f.sku, f.book_description, g.genre, a.author, e.publisher
-	FROM ficha_libro f
-	JOIN libro_genero g ON f.genre = g.id_genre
-	JOIN libro_autor a ON f.author = a.id_author
-	JOIN libro_editorial e ON f.publisher = e.id_publisher;
+	SELECT f.id_book, f.title, f.sku, f.book_description, GROUP_CONCAT(g.genre) AS genres, GROUP_CONCAT(a.author) AS authors, e.publisher
+		FROM ficha_libro f
+		JOIN libro_editorial e ON f.publisher = e.id_publisher
+		LEFT JOIN libro_genero_relacion gr ON f.id_book = gr.id_libro
+		LEFT JOIN libro_genero g ON gr.id_genero = g.id_genre
+		LEFT JOIN libro_autor_relacion ar ON f.id_book = ar.id_libro
+		LEFT JOIN libro_autor a ON ar.id_autor = a.id_author
+		GROUP BY f.id_book;
     
 -- Vista PUBLICACION_MENSAJES (permite visualizar todos los mensajes de cada publicacion)
 CREATE VIEW publicacion_mensaje AS
@@ -190,7 +193,9 @@ BEGIN
     SELECT SUM(stock) INTO stock_total
     FROM publicacion p
     JOIN ficha_libro f ON p.book = f.id_book
-    WHERE f.genre = id_genero;
+    JOIN libro_genero_relacion gr ON f.id_book = gr.id_libro
+    JOIN libro_genero g ON gr.id_genero = g.id_genre
+    WHERE g.id_genre = id_genero;
     RETURN stock_total;
 END $$
 DELIMITER ;
