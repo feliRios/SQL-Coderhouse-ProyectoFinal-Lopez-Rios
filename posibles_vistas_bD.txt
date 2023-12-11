@@ -1,6 +1,0 @@
-- Ventas por vendedor
-- Productos mas vendidos
-- Todas las transferencias realizadas a partir de una fecha
-- Cantidad de pagos en efectivo y con tarjeta
-- Cantidad de ventas en un mes
-- Datos de los clientes para campanias de marketing
