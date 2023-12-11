@@ -6,7 +6,7 @@ Proyecto final del _curso de SQL_ de Coderhouse. Penultimo curso de la _"Carrera
 Comisión 47370\
 Alumno: Felipe López Ríos
 
-![Chat Preview](https://imgur.com/1dDUMIU)
+![Chat Preview](https://i.imgur.com/1dDUMIU.png)
 
 ---
 # Rúbrica del proyecto
