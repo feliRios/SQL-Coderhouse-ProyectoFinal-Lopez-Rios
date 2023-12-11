@@ -33,5 +33,5 @@ Alumno: Felipe López Ríos
 
 # Sobre este proyecto
 
-Este proyecto de base de datos tiene como objetivo crear una infraestructura sólida para un e-commerce de libros dedicado a este nicho, brindando a los usuarios la oportunidad de comprar y vender libros nuevos o usados que contribuyan al desarrollo de una mentalidad de éxito.
-Más información en el archivo .docx del repositorio
+Este proyecto de base de datos tiene como objetivo crear una infraestructura sólida para un e-commerce de libros, brindando a los usuarios la oportunidad de comprar y vender libros nuevos o usados que contribuyan al desarrollo de una mentalidad de éxito.
+Más información en la documentacion (archivo documentacion.pdf) del repositorio
